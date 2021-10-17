@@ -1,93 +1,38 @@
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
 import styled from 'styled-components';
 import { Button } from 'components/atoms/Button/Button';
 import FormField from 'components/molecules/FormField/FormField';
 import TextArea from 'components/atoms/TextArea/TextArea';
+import useForm from './useForm';
+import { validate } from './useForm';
+import { ViewWrapper, LoginBox, UserBox, ErrorMsg } from './Form.styles';
 
 require('dotenv').config();
 
-const initialFormState = {
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-};
-
-export const ViewWrapper = styled.div`
-  width: 400px;
-  padding: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-`;
-
-export const LoginBox = styled.h1`
-  margin: 0 0 30px;
-  padding: 0;
-  color: #fff;
-  text-align: center;
-`;
-
-export const UserBox = styled.div`
-  position: relative;
-`;
-
-const { REACT_APP_EMAILJS_SERVICE_API, REACT_APP_EMAILJS_ACCOUNT_API } =
-  process.env;
-
 const Form = () => {
-  const [formValues, setFormValues] = useState(initialFormState);
-
-  const handleInputChange = (e) => {
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.value,
-    });
-    console.log(formValues);
-  };
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        REACT_APP_EMAILJS_SERVICE_API,
-        'template_wr2n5cr',
-        e.target,
-        REACT_APP_EMAILJS_ACCOUNT_API
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    e.target.reset();
-  };
+  const { handleChange, values, handleSubmit, errors } = useForm(validate);
 
   return (
-    <ViewWrapper as="form" onSubmit={sendEmail}>
+    <ViewWrapper as="form" onSubmit={handleSubmit}>
       <LoginBox>Contact me </LoginBox>
       <UserBox>
         <FormField
           label="Name"
-          id="name"
           name="name"
-          value={formValues.name}
-          onChange={handleInputChange}
+          id="name"
+          type="text"
+          value={values.name}
+          handleChange={handleChange}
         />
       </UserBox>
       <UserBox>
         <FormField
           label="Subject"
           id="subject"
+          type="text"
           name="subject"
-          value={formValues.subject}
-          onChange={handleInputChange}
+          value={values.subject}
+          handleChange={handleChange}
         />
       </UserBox>
       <UserBox>
@@ -96,8 +41,8 @@ const Form = () => {
           id="email"
           name="email"
           type="email"
-          value={formValues.email}
-          onChange={handleInputChange}
+          value={values.email}
+          handleChange={handleChange}
         />
       </UserBox>
       <UserBox>
@@ -105,13 +50,14 @@ const Form = () => {
           label="Message"
           id="message"
           name="message"
-          value={formValues.message}
-          onChange={handleInputChange}
+          value={values.message}
+          handleChange={handleChange}
         />
       </UserBox>
       <UserBox>
         <Button type="submit">Send</Button>
       </UserBox>
+      <UserBox>{errors && <p>{errors}</p>}</UserBox>
     </ViewWrapper>
   );
 };

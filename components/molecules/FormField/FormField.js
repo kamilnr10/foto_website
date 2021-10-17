@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
 `;
 
-const FormField = ({ onChange, value, label, name, id, type = 'text' }) => {
+const FormField = ({ id, name, type, value, handleChange, label }) => {
   return (
     <Wrapper>
       <Input
@@ -17,7 +17,7 @@ const FormField = ({ onChange, value, label, name, id, type = 'text' }) => {
         id={id}
         type={type}
         value={value}
-        onChange={onChange}
+        handleChange={handleChange}
         required
       />
       <Label htmlFor={id}>{label}</Label>
