@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import logo from 'assets/images/logo.png';
 
 const Wrapper = styled.nav`
-  width: 80%;
+  max-width: 1200px;
   height: 100%;
   display: flex;
   flex-direction: row;

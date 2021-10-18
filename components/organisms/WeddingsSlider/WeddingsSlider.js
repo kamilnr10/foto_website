@@ -9,11 +9,11 @@ const Carouse = styled(Carousel)`
   justify-content: center;
 
   .carousel .slide {
-    height: 80vh;
+    height: 100vh;
   }
 
   .carousel .slide img {
-    max-width: 100%;
+    max-width: 1000px;
     height: auto;
   }
 `;
@@ -33,7 +33,13 @@ const WeddingsSlider = ({ slides }) => {
   console.log(slides);
   return (
     <div>
-      <Carouse infiniteLoop autoPlay>
+      <Carouse
+        infiniteLoop
+        autoPlay
+        width="1000px"
+        thumbWidth="50px"
+        stopOnHover
+      >
         {slides.map((slide) => (
           <ImageWrapper key={slide.url}>
             <img src={slide.url} alt="" />

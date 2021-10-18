@@ -11,6 +11,7 @@ import axios from 'axios';
 import Gallery from 'views/Gallery';
 import { DataSlider } from 'assets/data/DataSlider';
 import WeddingsSlider from 'components/organisms/WeddingsSlider/WeddingsSlider';
+import AboutMe from 'views/AboutMe';
 
 const ViewWrapper = styled.div`
   display: flex;
@@ -92,7 +93,7 @@ const App = () => {
           <ViewWrapper>
             <Switch>
               <Route path="/" exact>
-                <h1>O mnie</h1>
+                <AboutMe />
               </Route>
               <Route path="/weddings">
                 <WeddingsSlider slides={weddingsPhotos.weddings} />
