@@ -1,5 +1,7 @@
+import { GallerySlider } from 'components/organisms/GallerySlider/GallerySlider';
 import React from 'react';
 import styled from 'styled-components';
+import Gallery from 'views/Gallery';
 
 const ViewWrapper = styled.div`
   display: flex;
@@ -23,10 +25,12 @@ const SocialMediaLinks = styled.div`
 
 const TextWrapper = styled.div``;
 
-const AboutMe = () => {
+const AboutMe = ({ slides }) => {
   return (
     <ViewWrapper>
-      <ImageWrapper></ImageWrapper>
+      <ImageWrapper>
+        <Gallery slides={slides} />
+      </ImageWrapper>
       <SocialMediaLinks>SocialMediaLinks</SocialMediaLinks>
       <TextWrapper>
         <h2>Who am I?</h2>

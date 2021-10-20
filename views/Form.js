@@ -10,8 +10,14 @@ import { ViewWrapper, LoginBox, UserBox, ErrorMsg } from './Form.styles';
 require('dotenv').config();
 
 const Wrapper = styled.div`
+  width: 800px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+`;
+
+const TextWrapper = styled.div`
+  width: 400px;
 `;
 
 const Form = () => {
@@ -65,7 +71,12 @@ const Form = () => {
         </UserBox>
         <UserBox>{errors && <p>{errors}</p>}</UserBox>
       </ViewWrapper>
-      <div>Info</div>
+      <TextWrapper>
+        <img src="" alt="" />
+        <div>
+          <p></p>
+        </div>
+      </TextWrapper>
     </Wrapper>
   );
 };

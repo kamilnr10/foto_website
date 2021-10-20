@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 import logo from 'assets/images/logo.png';
 
 const Wrapper = styled.nav`
-  max-width: 1200px;
+  width: 800px;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  /* justify-content: space-between; */
   align-items: center;
   margin: 0 auto;
 
@@ -32,7 +32,9 @@ const StyledLink = styled(NavLink).attrs({ activeClassName })`
   width: 100px;
   text-decoration: none;
   padding: 15px 0 15px 0;
+  font-size: 12px;
   text-align: center;
+  letter-spacing: 2px;
   transition: 0.3s;
 
   &:hover {
@@ -57,16 +59,19 @@ const FooterWrapper = styled.footer`
 const Navigation = () => {
   return (
     <Wrapper>
-      <NavigationWrapper>
-        <StyledLink to="/gallery">Gallery</StyledLink>
-        <StyledLink to="/weddings">Weddings</StyledLink>
-        <StyledLink to="/lifestyle">Lifestyle</StyledLink>
+      <div>
         <img src={logo} alt="logo" />
+      </div>
+      <NavigationWrapper>
+        <StyledLink to="/slider">SLIDER</StyledLink>
+        <StyledLink to="/gallery">GALLERY</StyledLink>
+        <StyledLink to="/weddings">WEDDINGS</StyledLink>
+        <StyledLink to="/lifestyle">LIFESTYLE</StyledLink>
         <StyledLink exact to="/">
-          O mnie
+          ABOUT ME
         </StyledLink>
-        <StyledLink to="/contact">Contact</StyledLink>
-        <StyledLink to="/blog">Blog</StyledLink>
+        <StyledLink to="/contact">CONTACT</StyledLink>
+        <StyledLink to="/blog">BLOG</StyledLink>
       </NavigationWrapper>
       {/* <FooterWrapper>
         Copyrights@

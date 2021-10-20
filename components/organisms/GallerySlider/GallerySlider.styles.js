@@ -9,8 +9,8 @@ export const Slider = styled.div`
 
   img {
     width: 500px;
-    height: 600px;
-    border-radius: 10px;
+    height: 500px;
+    border-radius: 50%;
   }
 `;
 

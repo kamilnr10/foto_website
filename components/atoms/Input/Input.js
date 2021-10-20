@@ -22,7 +22,7 @@ const InputField = styled.input`
     border-color: #a7a7a7;
   }
   &:valid {
-    border-color: #e4e4e4;
+    border-color: #fe95d5;
   }
   &:valid ~ ${Label} {
     top: -20px;
