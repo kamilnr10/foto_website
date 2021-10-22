@@ -15,7 +15,6 @@ const ImageWrapper = styled.div`
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background-color: red;
 `;
 
 const SocialMediaLinks = styled.div`

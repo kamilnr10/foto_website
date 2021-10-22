@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import { Slider, LeftArrow, RightArrow } from './GallerySlider.styles';
 
 const Slide = styled.div`
-  opcity: 0;
-  transition-duration: 1s ease;
+  opacity: 0;
+  transition-duration: 4s ease;
 
   &.active {
     opacity: 1;
-    transition-duration: 1s;
-    transform: scale(1.08);
+    transition-duration: 2s;
   }
 `;
 
