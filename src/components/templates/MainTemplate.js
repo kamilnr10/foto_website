@@ -1,21 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import photo from 'assets/photo.jpg';
 import Navigation from 'components/organisms/Navigation/Navigation';
-import { GlobalStyle } from 'assets/styles/GlobalStyle';
-
-const Background = styled.div`
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(${photo});
-  background-size: cover;
-`;
+// import { GlobalStyle } from 'assets/styles/GlobalStyle';
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  overflow-x: scroll;
   margin: 0;
   padding: 0;
   display: grid;
@@ -25,12 +15,10 @@ const Wrapper = styled.div`
 const MainTemplate = ({ children }) => {
   return (
     <>
-      <Background>
-        <Wrapper>
-          <Navigation />
-          {children}
-        </Wrapper>
-      </Background>
+      <Wrapper>
+        <Navigation />
+        {children}
+      </Wrapper>
     </>
   );
 };

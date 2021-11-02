@@ -24,9 +24,19 @@ const TextInput = styled.textarea`
     color: #03e9f4;
     font-size: 12px;
   }
+  &:invalid {
+    border-color: #a7a7a7;
+  }
+  &:valid ~ ${Label} {
+    top: -20px;
+    left: -10px;
+    color: #03e9f4;
+    font-size: 12px;
+  }
 `;
 
-const TextArea = ({ id, label, name, value, onChange }) => {
+const TextArea = ({ id, label, name, value, handleChange }) => {
+  console.log(value);
   return (
     <Wrapper>
       <TextInput
@@ -36,9 +46,9 @@ const TextArea = ({ id, label, name, value, onChange }) => {
         maxlength="250"
         name={name}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
         required
-      />
+      ></TextInput>
       <Label htmlFor={id}>{label}</Label>
     </Wrapper>
   );
