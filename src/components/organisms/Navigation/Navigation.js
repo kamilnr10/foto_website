@@ -8,7 +8,6 @@ const Wrapper = styled.nav`
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   margin: 0 auto;
 
@@ -59,9 +58,7 @@ const FooterWrapper = styled.footer`
 const Navigation = () => {
   return (
     <Wrapper>
-      <div>
-        <img src={logo} alt="logo" />
-      </div>
+      <div>Logo</div>
       <NavigationWrapper>
         <StyledLink to="/gallery">GALLERY</StyledLink>
         <StyledLink to="/weddings">WEDDINGS</StyledLink>

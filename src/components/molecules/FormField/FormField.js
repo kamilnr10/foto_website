@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 const FormField = ({ id, name, type, value, handleChange, label }) => {
   return (
     <Wrapper>
+      <Label htmlFor={id}>{label}</Label>
       <Input
         name={name}
         id={id}
@@ -20,7 +21,6 @@ const FormField = ({ id, name, type, value, handleChange, label }) => {
         handleChange={handleChange}
         required
       />
-      <Label htmlFor={id}>{label}</Label>
     </Wrapper>
   );
 };

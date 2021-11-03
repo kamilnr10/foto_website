@@ -25,7 +25,7 @@ const Form = () => {
 
   return (
     <Wrapper>
-      <ViewWrapper as="form" onSubmit={handleSubmit}>
+      <ViewWrapper as="form" onSubmit={handleSubmit} noValidate>
         <LoginBox>Contact me </LoginBox>
         <UserBox>
           <FormField
@@ -37,6 +37,7 @@ const Form = () => {
             handleChange={handleChange}
           />
         </UserBox>
+        <UserBox>{errors && <p>{errors}</p>}</UserBox>
         <UserBox>
           <FormField
             label="Subject"

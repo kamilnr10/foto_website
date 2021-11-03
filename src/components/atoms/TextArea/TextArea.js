@@ -9,14 +9,15 @@ const Wrapper = styled.div`
 
 const TextInput = styled.textarea`
   width: 100%;
-  padding: 40px 0 0 0;
+  padding: 10px 0 0 10px;
   font-size: 16px;
-  color: #fff;
+  color: black;
   margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
+  border: 1px solid #6c95bb;
+  border-radius: 8px;
   outline: none;
   background: transparent;
+  box-shadow: inset 0px 1px 8px rgba(166, 191, 212, 0.8);
 
   &:focus ~ ${Label} {
     top: -20px;
@@ -33,12 +34,33 @@ const TextInput = styled.textarea`
     color: #03e9f4;
     font-size: 12px;
   }
+
+  &:focus {
+    border-color: #4598e1;
+    box-shadow: inset 0px 1px 8px rgba(69, 152, 225, 0.8);
+  }
+
+  &:valid {
+    border-color: #6eba6c;
+    box-shadow: inset 0px 1px 8px rgba(130, 196, 128, 0.8);
+  }
+  &:valid ~ ${Label} {
+    top: -20px;
+    left: -10px;
+    color: #fe95d5;
+    font-size: 12px;
+  }
+
+  &:hover {
+    box-shadow: inset 1px 2px 8px rgba(0, 0, 0, 0.02);
+  }
 `;
 
 const TextArea = ({ id, label, name, value, handleChange }) => {
   console.log(value);
   return (
     <Wrapper>
+      <Label htmlFor={id}>{label}</Label>
       <TextInput
         id={id}
         rows="4"
@@ -49,7 +71,6 @@ const TextArea = ({ id, label, name, value, handleChange }) => {
         onChange={handleChange}
         required
       ></TextInput>
-      <Label htmlFor={id}>{label}</Label>
     </Wrapper>
   );
 };

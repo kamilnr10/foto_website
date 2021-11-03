@@ -9,12 +9,19 @@ export const initialFormState = {
   message: '',
 };
 
+export const errorsInfo = {
+  type: '',
+  text: '',
+};
+
 const { REACT_APP_EMAILJS_SERVICE_API, REACT_APP_EMAILJS_ACCOUNT_API } =
   process.env;
 
 const regName = /^[a-zA-ZÓ-ż]+(([',. -][a-zA-Zó-ż ])?[a-zA-Zó-ż]*)*$/i;
 
 export const validate = (form) => {
+  console.log(form);
+
   if (!form.name) {
     return 'Username required';
   } else if (!regName.test(form.name)) {
@@ -65,11 +72,12 @@ const useForm = (validate) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(values.name);
 
     const errorsMsg = validate(values);
     if (errorsMsg) {
       setErrors(errorsMsg);
-      console.log('error');
+      console.log(errors);
       return;
     } else {
       console.log(values.message);
