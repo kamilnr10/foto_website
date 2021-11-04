@@ -9,52 +9,37 @@ export const initialFormState = {
   message: '',
 };
 
-export const errorsInfo = {
-  type: '',
-  text: '',
-};
-
 const { REACT_APP_EMAILJS_SERVICE_API, REACT_APP_EMAILJS_ACCOUNT_API } =
   process.env;
 
 const regName = /^[a-zA-ZÓ-ż]+(([',. -][a-zA-Zó-ż ])?[a-zA-Zó-ż]*)*$/i;
 
 export const validate = (form) => {
-  console.log(form);
+  // console.log(form);
+  let errorsInfo = {};
 
-  if (!form.name) {
-    return 'Username required';
-  } else if (!regName.test(form.name)) {
-    return 'Name is invalid';
-  } else if (form.name.length > 30) {
-    return 'Max char length of name is 30';
-  }
+  if (!form.name.trim()) errorsInfo.name = 'Username required';
+  if (!regName.test(form.name)) errorsInfo.name = 'Name is invalid';
+  if (form.name.length > 30) errorsInfo.name = 'Max char length of name is 30';
 
-  if (!form.subject) {
-    return 'Subject required';
-  } else if (form.subject.length > 100) {
-    return 'Max char length of subject is 100';
-  } else if (form.subject.length < 2) {
-    return 'Min char length of subject is 2';
-  }
+  if (!form.subject.trim()) errorsInfo.subject = 'Subject required';
+  if (form.subject.length > 100)
+    errorsInfo.subject = 'Max char length of subject is 100';
+  if (form.subject.length < 2)
+    errorsInfo.subject = 'Min char length of subject is 2';
 
-  if (!form.email) {
-    return 'Email required';
-  } else if (!/^[A-Z0-9._%+=]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email)) {
-    return 'Email address is invalid';
-  } else if (form.email.length > 50) {
-    return 'Max char length of email address is 50';
-  }
+  if (!form.email.trim()) errorsInfo.email = 'Email required';
+  if (!/^[A-Z0-9._%+=]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email))
+    errorsInfo.email = 'Email address is invalid';
+  if (form.email.length > 50)
+    errorsInfo.email = 'Max char length of email address is 50';
 
-  if (!form.message) {
-    return 'Message required';
-  } else if (form.message.length < 4) {
-    return 'Message is too short';
-  } else if (form.message.length > 500) {
-    return 'Max char length of message is 500';
-  }
+  if (!form.message.trim()) errorsInfo.message = 'Message required';
+  if (form.message.length < 4) errorsInfo.message = 'Message is too short';
+  if (form.message.length > 500)
+    errorsInfo.message = 'Max char length of message is 500';
 
-  return null;
+  return errorsInfo;
 };
 
 const useForm = (validate) => {
@@ -67,18 +52,17 @@ const useForm = (validate) => {
       ...values,
       [name]: value,
     });
-    console.log(values);
+    // console.log(values);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values.name);
+    console.log(values);
 
     const errorsMsg = validate(values);
     if (errorsMsg) {
       setErrors(errorsMsg);
       console.log(errors);
-      return;
     } else {
       console.log(values.message);
       emailjs

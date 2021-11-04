@@ -57,7 +57,6 @@ const TextInput = styled.textarea`
 `;
 
 const TextArea = ({ id, label, name, value, handleChange }) => {
-  console.log(value);
   return (
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>

@@ -22,7 +22,7 @@ const TextWrapper = styled.div`
 
 const Form = () => {
   const { handleChange, values, handleSubmit, errors } = useForm(validate);
-
+  console.log(errors);
   return (
     <Wrapper>
       <ViewWrapper as="form" onSubmit={handleSubmit} noValidate>
@@ -37,7 +37,7 @@ const Form = () => {
             handleChange={handleChange}
           />
         </UserBox>
-        <UserBox>{errors && <p>{errors}</p>}</UserBox>
+        {errors && errors.map((error) => <p>{errors.name}</p>)}
         <UserBox>
           <FormField
             label="Subject"
@@ -47,6 +47,7 @@ const Form = () => {
             value={values.subject}
             handleChange={handleChange}
           />
+          {/* <UserBox>{errors.subject && <p>{errors.subject}</p>}</UserBox> */}
         </UserBox>
         <UserBox>
           <FormField
@@ -57,6 +58,7 @@ const Form = () => {
             value={values.email}
             handleChange={handleChange}
           />
+          {/* <UserBox>{errors.email && <p>{errors.email}</p>}</UserBox> */}
         </UserBox>
         <UserBox>
           <FormField
@@ -68,6 +70,7 @@ const Form = () => {
             handleChange={handleChange}
           />
         </UserBox>
+        {/* <UserBox>{errors.question && <p>{errors.question}</p>}</UserBox> */}
         <UserBox>
           <TextArea
             label="Message"
@@ -77,6 +80,7 @@ const Form = () => {
             handleChange={handleChange}
           />
         </UserBox>
+        {/* <UserBox>{errors.message && <p>{errors.message}</p>}</UserBox> */}
         <UserBox>
           <Button type="submit">Send</Button>
         </UserBox>
