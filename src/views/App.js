@@ -28,6 +28,7 @@ const Single = () => {
       <h1>Single Post</h1>
       <p>Created by</p>
       <p>Text lore ipsum</p>
+      <div>IMAGE</div>
     </div>
   );
 };
