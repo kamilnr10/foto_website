@@ -13,6 +13,7 @@ import { DataSlider } from 'assets/data/DataSlider';
 import WeddingsSlider from 'components/organisms/WeddingsSlider/WeddingsSlider';
 import AboutMe from 'views/AboutMe';
 import Slider from 'components//organisms/Slider/Slider';
+import Portfolio from 'components/templates/Portfolio/Portfolio';
 
 const images = [
   'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
@@ -21,10 +22,19 @@ const images = [
   'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80',
 ];
 
+const Single = () => {
+  return (
+    <div>
+      <h1>Single Post</h1>
+      <p>Created by</p>
+      <p>Text lore ipsum</p>
+    </div>
+  );
+};
+
 const ViewWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
@@ -232,6 +242,9 @@ const App = () => {
                 <Route path="/" exact>
                   <AboutMe slides={DataSlider} />
                 </Route>
+                <Route path="/portfolio" exact>
+                  <Portfolio slides={lifestylePhotos.lifestyles} />
+                </Route>
                 <Route path="/weddings">
                   <WeddingsSlider slides={weddingsPhotos.weddings} />
                 </Route>
@@ -244,8 +257,11 @@ const App = () => {
                 <Route path="/contact">
                   <Form />
                 </Route>
-                <Route path="/blog">
+                <Route exact path="/blog">
                   <Blog articles={articles} error={error} />
+                </Route>
+                <Route path="/blog/:blogId">
+                  <Single />
                 </Route>
               </Switch>
             </ViewWrapper>

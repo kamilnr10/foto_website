@@ -60,6 +60,7 @@ const Navigation = () => {
     <Wrapper>
       <div>Logo</div>
       <NavigationWrapper>
+        <StyledLink to="/portfolio">PORTFOLIO</StyledLink>
         <StyledLink to="/gallery">GALLERY</StyledLink>
         <StyledLink to="/weddings">WEDDINGS</StyledLink>
         <StyledLink to="/lifestyle">LIFESTYLE</StyledLink>

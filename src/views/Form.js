@@ -16,13 +16,21 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const TextWrapper = styled.div`
-  width: 400px;
+const errorColor = {
+  borderColor: '#ED4040',
+  boxShadow: 'inset 15px 15px -9px rgba(237, 66, 66, 0.5)',
+};
+
+const ButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const Form = () => {
-  const { handleChange, values, handleSubmit, errors } = useForm(validate);
-  console.log(errors);
+  const { handleChange, values, handleSubmit, errors, sendMessage } =
+    useForm(validate);
+
   return (
     <Wrapper>
       <ViewWrapper as="form" onSubmit={handleSubmit} noValidate>
@@ -35,9 +43,11 @@ const Form = () => {
             type="text"
             value={values.name}
             handleChange={handleChange}
+            placeholder="Enter name here"
+            style={errors.name ? errorColor : null}
           />
+          {errors.name && <p>{errors.name}</p>}
         </UserBox>
-        {errors && errors.map((error) => <p>{errors.name}</p>)}
         <UserBox>
           <FormField
             label="Subject"
@@ -46,8 +56,10 @@ const Form = () => {
             name="subject"
             value={values.subject}
             handleChange={handleChange}
+            placeholder="Enter subject here"
+            style={errors.subject ? errorColor : null}
           />
-          {/* <UserBox>{errors.subject && <p>{errors.subject}</p>}</UserBox> */}
+          {errors.subject && <p>{errors.subject}</p>}
         </UserBox>
         <UserBox>
           <FormField
@@ -57,8 +69,10 @@ const Form = () => {
             type="email"
             value={values.email}
             handleChange={handleChange}
+            placeholder="Enter email here"
+            style={errors.email ? errorColor : null}
           />
-          {/* <UserBox>{errors.email && <p>{errors.email}</p>}</UserBox> */}
+          {errors.email && <p>{errors.email}</p>}
         </UserBox>
         <UserBox>
           <FormField
@@ -67,10 +81,10 @@ const Form = () => {
             name="question"
             type="text"
             value={values.question}
+            placeholder="Social media, website or ..."
             handleChange={handleChange}
           />
         </UserBox>
-        {/* <UserBox>{errors.question && <p>{errors.question}</p>}</UserBox> */}
         <UserBox>
           <TextArea
             label="Message"
@@ -78,20 +92,15 @@ const Form = () => {
             name="message"
             value={values.message}
             handleChange={handleChange}
+            placeholder="Enter message here"
+            style={errors.message ? errorColor : null}
           />
+          {errors.message && <p>{errors.message}</p>}
         </UserBox>
-        {/* <UserBox>{errors.message && <p>{errors.message}</p>}</UserBox> */}
-        <UserBox>
-          <Button type="submit">Send</Button>
-        </UserBox>
-        <UserBox>{errors && <p>{errors}</p>}</UserBox>
+        <ButtonWrapper>
+          <Button type="submit">{sendMessage ? sendMessage : 'Wyślij'}</Button>
+        </ButtonWrapper>
       </ViewWrapper>
-      <TextWrapper>
-        <img src="" alt="" />
-        <div>
-          <p></p>
-        </div>
-      </TextWrapper>
     </Wrapper>
   );
 };

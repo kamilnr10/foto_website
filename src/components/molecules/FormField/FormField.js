@@ -9,7 +9,16 @@ const Wrapper = styled.div`
   align-items: flex-start;
 `;
 
-const FormField = ({ id, name, type, value, handleChange, label }) => {
+const FormField = ({
+  id,
+  name,
+  type,
+  value,
+  handleChange,
+  label,
+  style,
+  placeholder,
+}) => {
   return (
     <Wrapper>
       <Label htmlFor={id}>{label}</Label>
@@ -19,6 +28,8 @@ const FormField = ({ id, name, type, value, handleChange, label }) => {
         type={type}
         value={value}
         handleChange={handleChange}
+        style={style}
+        placeholder={placeholder}
         required
       />
     </Wrapper>

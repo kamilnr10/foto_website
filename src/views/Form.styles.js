@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const ViewWrapper = styled.div`
   width: 400px;
+  margin: 10px;
   padding: 40px;
   /* background: rgba(0, 0, 0, 0.5); */
-  /* background-color: #fff5f8;
+  /* background-color: #f5f5f5; */
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-  border-radius: 10px; */
+  box-shadow: 0px 10px 42px 0px rgba(226, 222, 243, 0.75);
+  border-radius: 15px;
 `;
 
 export const LoginBox = styled.h1`
@@ -19,6 +20,18 @@ export const LoginBox = styled.h1`
 
 export const UserBox = styled.div`
   position: relative;
+  width: 100%;
+  height: 80px;
+  margin: 0 auto 20px 0;
+
+  p {
+    font-size: 12px;
+    color: #ea494c;
+  }
+
+  button {
+    display: inline-block;
+  }
 `;
 
 export const ErrorMsg = styled.p`
