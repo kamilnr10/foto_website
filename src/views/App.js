@@ -14,6 +14,7 @@ import WeddingsSlider from 'components/organisms/WeddingsSlider/WeddingsSlider';
 import AboutMe from 'views/AboutMe';
 import Slider from 'components//organisms/Slider/Slider';
 import Portfolio from 'components/templates/Portfolio/Portfolio';
+import { useParams } from 'react-router-dom';
 
 const images = [
   'https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80',
@@ -22,12 +23,56 @@ const images = [
   'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80',
 ];
 
-const Single = () => {
+const Single = (props) => {
+  const [article, setArticle] = useState([]);
+  console.log(props.match.params.id);
+  let { id } = useParams();
+  console.log(id);
+
+  useEffect(() => {
+    axios
+      .post(
+        'https://graphql.datocms.com/',
+        {
+          query: `
+      {
+        article(filter: {id: {eq: ${id}}}) {
+          id
+          title
+          content
+          category
+          image {
+            url
+          }
+          imageGallery {
+            url
+            id
+          }
+        }
+      }
+      
+      `,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${API_TOKEN}`,
+          },
+        }
+      )
+      .then(({ data: { data } }) => {
+        console.log(data);
+        setArticle(data.article);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const { title, category, image, imageGallery, content } = article;
+
   return (
     <div>
-      <h1>Single Post</h1>
-      <p>Created by</p>
-      <p>Text lore ipsum</p>
+      <h1>{title}</h1>
+      <p>{category}</p>
+      <p>{content}</p>
       <div>IMAGE</div>
     </div>
   );
@@ -117,7 +162,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
-    console.log('działa');
+    // console.log('działa');
     let response = await axios
       .post(
         'https://graphql.datocms.com/',
@@ -162,13 +207,13 @@ const App = () => {
       )
       .then(({ data: { data } }) => {
         setTimeout(() => {
-          console.log(data);
+          // console.log(data);
           setArticles(data.allArticles);
           setLifestylePhotos(data.lifestyle);
           setWeddingsPhotos(data.wedding);
           setEngagementsPhotos(data.engagement);
           setLoading(true);
-          console.log(weddingsPhotos);
+          // console.log(weddingsPhotos);
         }, 2000);
       })
       .catch(() => {
@@ -178,58 +223,6 @@ const App = () => {
 
   useEffect(() => {
     fetchData();
-    // axios
-    //   .post(
-    //     'https://graphql.datocms.com/',
-    //     {
-    //       query: `
-    //     {
-    //       allArticles {
-    //         id
-    //         title
-    //         category
-    //         content
-    //         image {
-    //           url
-    //         }
-    //       }
-    //       wedding {
-    //         weddings {
-    //           url
-    //         }
-    //       }
-    //       lifestyle {
-    //         lifestyles {
-    //           url
-    //           id
-    //         }
-    //       }
-    //       engagement {
-    //         engagements {
-    //           url
-    //           id
-    //         }
-    //       }
-    //     }
-    //     `,
-    //     },
-    //     {
-    //       headers: {
-    //         authorization: `Bearer ${API_TOKEN}`,
-    //       },
-    //     }
-    //   )
-    //   .then(({ data: { data } }) => {
-    //     console.log(data);
-    //     setArticles(data.allArticles);
-    //     setLifestylePhotos(data.lifestyle);
-    //     setWeddingsPhotos(data.wedding);
-    //     setEngagementsPhotos(data.engagement);
-    //     console.log(weddingsPhotos);
-    //   })
-    //   .catch(() => {
-    //     setError(`sorry, we couldn't load articles`);
-    //   });
   }, []);
 
   return (
@@ -261,9 +254,10 @@ const App = () => {
                 <Route exact path="/blog">
                   <Blog articles={articles} error={error} />
                 </Route>
-                <Route path="/blog/:blogId">
-                  <Single />
-                </Route>
+                <Route
+                  path="/blog/:id"
+                  render={(props) => <Single {...props} />}
+                ></Route>
               </Switch>
             </ViewWrapper>
           </MainTemplate>

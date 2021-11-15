@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'components/atoms/Button/Button';
 // import { ArticleWrapper, TitleWrapper, StyledButton } from './Blog.styles';
 import styled from 'styled-components';
+import { Route, Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
   max-width: 800px;
@@ -92,17 +93,33 @@ const CircleBackground = styled.div`
   z-index: -999;
 `;
 
+const Card = ({ title, img, category, content, link }) => {
+  console.log(img);
+  return (
+    <ArticleWrapper key={title}>
+      <CircleBackground></CircleBackground>
+      {/* {image ? <img src={image.url} alt="article_image" /> : null} */}
+      <ImgWrapper>
+        <BackgroundImg src={img} />
+      </ImgWrapper>
+      <TextWrapper>
+        <h3>{title}</h3>
+        <p>{category}</p>
+        <p>{content}</p>
+        <TextButton>Read more</TextButton>
+        <Route>
+          <Link to={link}>To post</Link>
+        </Route>
+      </TextWrapper>
+    </ArticleWrapper>
+  );
+};
+
 // wrzucać zdjęcia w konkretnym formacie?
 
-const Blog = ({ articles, error }) => {
-  return (
-    <Wrapper>
-      {articles.length > 0 ? (
-        articles.map(({ title, category, content, image }) => {
-          return (
-            <ArticleWrapper key={title}>
+{
+  /* <ArticleWrapper key={title}>
               <CircleBackground></CircleBackground>
-              {/* {image ? <img src={image.url} alt="article_image" /> : null} */}
               <ImgWrapper>
                 <BackgroundImg src={image.url} />
               </ImgWrapper>
@@ -112,7 +129,25 @@ const Blog = ({ articles, error }) => {
                 <p>{content}</p>
                 <TextButton>Read more</TextButton>
               </TextWrapper>
-            </ArticleWrapper>
+            </ArticleWrapper> */
+}
+
+const Blog = ({ articles, error }) => {
+  return (
+    <Wrapper>
+      {articles.length > 0 ? (
+        articles.map(({ title, category, content, image, id }) => {
+          console.log(image);
+          const url = image.url;
+          return (
+            <Card
+              key={title}
+              img={url}
+              title={title}
+              content={content}
+              category={category}
+              link={`/blog/${id}`}
+            />
           );
         })
       ) : (
