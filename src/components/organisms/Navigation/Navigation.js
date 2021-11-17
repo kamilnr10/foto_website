@@ -1,33 +1,122 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import logo from 'assets/images/logo.png';
 
 const Wrapper = styled.nav`
-  width: 800px;
+  /* width: 800px; */
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-
   img {
     width: 100px;
   }
 `;
 
-const NavigationWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto;
+const NavigationWrapper = styled.nav`
+  width: 60%;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  ul {
+    height: 100%;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      margin: 20px 0;
+    }
+  }
+`;
+
+const MenuToggleButton = styled.button`
+  width: 40px;
+  height: 40px;
+  z-index: 9999;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  overflow-x: hidden;
+  background-color: white;
+  border: 2px solid black;
+
+  span:first-child {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(
+      ${({ isOpen }) => (isOpen ? 'calc(-100% - 2px)' : 0)}
+    );
+    transition: transform ease-out 0.3s;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      width: 18px;
+      height: 3px;
+      background-color: black;
+      left: 50%;
+    }
+
+    &::before {
+      top: 11px;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      bottom: 11px;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
+  span:last-child {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 2px);
+    transform: translateX(
+      ${({ isOpen }) => (isOpen ? 'calc(-100% - 2px)' : 0)}
+    );
+    transition: transform ease-out 0.3s;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      width: 30px;
+      height: 3px;
+      background-color: black;
+      top: 50%;
+      left: 50%;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
 `;
 
 const activeClassName = 'active-link';
 const StyledLink = styled(NavLink).attrs({ activeClassName })`
-  /* font-weight: bold; */
   width: 100px;
   text-decoration: none;
   padding: 15px 0 15px 0;
@@ -35,48 +124,47 @@ const StyledLink = styled(NavLink).attrs({ activeClassName })`
   text-align: center;
   letter-spacing: 2px;
   transition: 0.3s;
-
   &:hover {
     color: #fe95d5;
   }
-
   &.active-link {
     color: #fe95d5;
   }
 `;
 
-const FooterWrapper = styled.footer`
-  width: 100%;
-  height: 100px;
-
-  i {
-    color: #444444;
-    padding: 5px;
-  }
-`;
-
 const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Wrapper>
-      <div>Logo</div>
-      <NavigationWrapper>
-        <StyledLink to="/portfolio">PORTFOLIO</StyledLink>
-        <StyledLink to="/gallery">GALLERY</StyledLink>
-        <StyledLink to="/weddings">WEDDINGS</StyledLink>
-        <StyledLink to="/lifestyle">LIFESTYLE</StyledLink>
-        <StyledLink exact to="/">
-          ABOUT ME
-        </StyledLink>
-        <StyledLink to="/contact">CONTACT</StyledLink>
-        <StyledLink to="/blog">BLOG</StyledLink>
-      </NavigationWrapper>
-      {/* <FooterWrapper>
-        Copyrights@
-        <br />
-        <i class="fab fa-facebook-square"></i>
-        <i class="fab fa-instagram-square"></i>
-      </FooterWrapper> */}
-    </Wrapper>
+    <>
+      <MenuToggleButton
+        isOpen={isOpen}
+        onClick={() => setIsOpen((prevState) => !prevState)}
+      >
+        <span />
+        <span />
+      </MenuToggleButton>
+      {isOpen ? (
+        <NavigationWrapper>
+          <ul>
+            <li>
+              <StyledLink to="/portfolio">PORTFOLIO</StyledLink>
+            </li>
+            <li>
+              <StyledLink exact to="/">
+                ABOUT ME
+              </StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/contact">CONTACT</StyledLink>
+            </li>
+            <li>
+              <StyledLink to="/blog">BLOG</StyledLink>
+            </li>
+          </ul>
+        </NavigationWrapper>
+      ) : null}
+    </>
   );
 };
 

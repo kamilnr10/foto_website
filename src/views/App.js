@@ -24,61 +24,6 @@ const images = [
   'https://images.unsplash.com/photo-1534161308652-fdfcf10f62c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2174&q=80',
 ];
 
-// const Post = (props) => {
-//   const [article, setArticle] = useState([]);
-//   console.log(props.match.params.id);
-//   let { id } = useParams();
-//   console.log(id);
-
-//   useEffect(() => {
-//     axios
-//       .post(
-//         'https://graphql.datocms.com/',
-//         {
-//           query: `
-//       {
-//         article(filter: {id: {eq: ${id}}}) {
-//           id
-//           title
-//           content
-//           category
-//           image {
-//             url
-//           }
-//           imageGallery {
-//             url
-//             id
-//           }
-//         }
-//       }
-
-//       `,
-//         },
-//         {
-//           headers: {
-//             authorization: `Bearer ${API_TOKEN}`,
-//           },
-//         }
-//       )
-//       .then(({ data: { data } }) => {
-//         console.log(data);
-//         setArticle(data.article);
-//       })
-//       .catch((err) => console.log(err));
-//   }, []);
-
-//   const { title, category, image, imageGallery, content } = article;
-
-//   return (
-//     <div>
-//       <h1>{title}</h1>
-//       <p>{category}</p>
-//       <p>{content}</p>
-//       <div>IMAGE</div>
-//     </div>
-//   );
-// };
-
 const ViewWrapper = styled.div`
   display: flex;
   flex-direction: column;

@@ -5,11 +5,11 @@ import Navigation from 'components/organisms/Navigation/Navigation';
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-rows: 150px 1fr;
+  padding: 0 10px;
+  /* display: grid;
+  grid-template-rows: 150px 1fr; */
 `;
 
 const MainTemplate = ({ children }) => {
