@@ -106,9 +106,10 @@ const Card = ({ title, img, category, content, link }) => {
         <h3>{title}</h3>
         <p>{category}</p>
         <p>{content}</p>
-        <TextButton>Read more</TextButton>
         <Route>
-          <Link to={link}>To post</Link>
+          <Link to={link}>
+            <TextButton>Read more</TextButton>
+          </Link>
         </Route>
       </TextWrapper>
     </ArticleWrapper>
