@@ -9,7 +9,8 @@ const Gallery = styled.div`
   --webkit-column-width: 33%;
   --moz-column-width: 33%;
   column-width: 33%;
-  padding: 0 12px;
+  padding: 0 10px;
+  margin: 10px 0;
 
   @media (max-width: 991px) {
     --webkit-column-count: 2;
@@ -31,7 +32,7 @@ const Pics = styled.div`
   --webkit-transition: all 350ms ease;
   transition: all 350ms ease;
   cursor: pointer;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 
   &:hover {
     filter: opacity(0.8);
@@ -41,11 +42,12 @@ const Pics = styled.div`
     width: 100%;
 
     @media (max-width: 480px) {
-      width: 320px;
+      width: 300px;
     }
   }
 
-  @media (maax-width: 991px) {
+  @media (min-width: 991px) {
+    width: 350px;
   }
 `;
 
@@ -87,7 +89,7 @@ const ModalNormal = styled.div`
     svg {
       position: fixed;
       top: 10px;
-      right: 10px;
+      left: 10px;
       width: 2rem;
       height: 2rem;
       padding: 5px;

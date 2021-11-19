@@ -3,18 +3,27 @@ import React from 'react';
 import styled from 'styled-components';
 import Gallery from 'views/Gallery';
 
-const ViewWrapper = styled.div`
+const Wrapper = styled.div`
+  width: 100%;
+  /* height: 100vh; */
+  padding: 0 10px;
+  /* display: grid;
+  grid-template-rows: 150px 1fr; */
+`;
+
+const ViewWrapper = styled(Wrapper)`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 600px;
-  margin: 15px 0 0 0;
+  width: 100%;
+  margin: 30px 0;
+  padding: 0 10px;
 `;
 
 const ImageWrapper = styled.div`
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  height: 100%;
 `;
 
 const SocialMediaLinks = styled.div`

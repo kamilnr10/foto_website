@@ -15,8 +15,8 @@ const Slide = styled.div`
   }
 
   img {
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
   }
 `;

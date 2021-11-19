@@ -20,8 +20,11 @@ const NavigationWrapper = styled.nav`
   height: 100vh;
   background-color: white;
   position: fixed;
-  left: 0;
+  right: 0;
   top: 0;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(${({ isOpen }) => (isOpen ? '0' : '100%')});
+  z-index: 100;
 
   ul {
     height: 100%;
@@ -41,10 +44,10 @@ const NavigationWrapper = styled.nav`
 const MenuToggleButton = styled.button`
   width: 40px;
   height: 40px;
-  z-index: 9999;
+  z-index: 998;
   position: fixed;
   top: 20px;
-  left: 20px;
+  right: 20px;
   overflow-x: hidden;
   background-color: white;
   border: 2px solid black;
@@ -72,13 +75,13 @@ const MenuToggleButton = styled.button`
     }
 
     &::before {
-      top: 11px;
-      transform: translate(-50%, -50%) rotate(45deg);
+      top: 12px;
+      transform: translate(-50%, -50%) rotate(-45deg);
     }
 
     &::after {
-      bottom: 11px;
-      transform: translate(-50%, -50%) rotate(-45deg);
+      bottom: 10px;
+      transform: translate(-50%, -50%) rotate(45deg);
     }
   }
 
@@ -144,26 +147,31 @@ const Navigation = () => {
         <span />
         <span />
       </MenuToggleButton>
-      {isOpen ? (
-        <NavigationWrapper>
-          <ul>
-            <li>
-              <StyledLink to="/portfolio">PORTFOLIO</StyledLink>
-            </li>
-            <li>
-              <StyledLink exact to="/">
-                ABOUT ME
-              </StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/contact">CONTACT</StyledLink>
-            </li>
-            <li>
-              <StyledLink to="/blog">BLOG</StyledLink>
-            </li>
-          </ul>
-        </NavigationWrapper>
-      ) : null}
+
+      <NavigationWrapper isOpen={isOpen}>
+        <ul>
+          <li>
+            <StyledLink onClick={() => setIsOpen(!isOpen)} to="/portfolio">
+              PORTFOLIO
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink onClick={() => setIsOpen(!isOpen)} exact to="/">
+              ABOUT ME
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink onClick={() => setIsOpen(!isOpen)} to="/contact">
+              CONTACT
+            </StyledLink>
+          </li>
+          <li>
+            <StyledLink onClick={() => setIsOpen(!isOpen)} to="/blog">
+              BLOG
+            </StyledLink>
+          </li>
+        </ul>
+      </NavigationWrapper>
     </>
   );
 };

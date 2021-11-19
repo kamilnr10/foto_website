@@ -10,7 +10,7 @@ import { ViewWrapper, LoginBox, UserBox, ErrorMsg } from './Form.styles';
 require('dotenv').config();
 
 const Wrapper = styled.div`
-  width: 800px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

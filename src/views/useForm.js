@@ -21,6 +21,7 @@ export const validate = (form) => {
   if (!form.name.trim()) errorsInfo.name = 'Username required';
   if (!regName.test(form.name)) errorsInfo.name = 'Name is invalid';
   if (form.name.length > 30) errorsInfo.name = 'Max char length of name is 30';
+  if (form.name.length < 2) errorsInfo.name = 'Min char length of name is 2';
 
   if (!form.subject.trim()) errorsInfo.subject = 'Subject required';
   if (form.subject.length > 100) {
